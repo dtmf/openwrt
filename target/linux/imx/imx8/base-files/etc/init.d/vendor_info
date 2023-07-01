@@ -1,0 +1,7 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+boot() {
+	dd if=/dev/mmcblk0boot0 of=/tmp/sn bs=12 count=1
+}

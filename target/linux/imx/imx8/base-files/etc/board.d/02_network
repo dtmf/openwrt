@@ -1,0 +1,14 @@
+. /lib/functions/uci-defaults.sh
+
+board_config_update
+
+json_is_a network object && exit 0
+
+ucidef_set_interfaces_lan_wan "wlan0" "eth0"
+
+ucidef_set_interface "wwan0" device "/dev/cdc-wdm0" protocol "qmi"
+uci add_list firewall.@zone[1].network='wwan0'
+
+board_config_flush
+
+exit 0
