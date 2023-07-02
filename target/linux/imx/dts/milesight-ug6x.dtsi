@@ -68,7 +68,7 @@
                 4g-power {
                         gpios = <&gpio1 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
 			gpio-export,name = "4g-power";
-			gpio-export,output = <1>;
+			gpio-export,output = <0>;
                 };
 
 		4g-reset {

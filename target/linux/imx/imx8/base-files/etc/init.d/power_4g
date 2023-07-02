@@ -1,0 +1,21 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+boot() {
+	CD=sim-card-detect/value                
+	P=4g-power/value                
+                  
+	cd /sys/class/gpio                      
+
+	[ -e $CD ] || exit
+	[ -e $P ] || exit         
+                          
+	if [ `cat $CD` -eq 1 ]                                            
+	then                                             
+		echo "*** SIM CARD detected. Powering on.."
+		echo 1 > $P                               
+	else                                      
+		echo "*** SIM CARD not detected"         
+	fi         
+}
