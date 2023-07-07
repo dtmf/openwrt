@@ -11,7 +11,7 @@ endef
 
 define Build/sysupgrade-tar
 	sh $(TOPDIR)/scripts/sysupgrade-tar.sh \
-		--board $(if $(BOARD_NAME),$(BOARD_NAME),$(DEVICE_NAME)) \
+		--board $(DEVICE_NAME) \
 		--kernel $(BIN_DIR)/$(DEVICE_IMG_PREFIX)-squashfs-kernel+fdt.itb \
 		--rootfs $(call param_get_default,rootfs,$(1),$(IMAGE_ROOTFS)) \
 		$@
@@ -34,7 +34,7 @@ define Device/milesight_ug6x
 	DEVICE_MODEL := UG65 UG67
 	KERNEL_LOADADDR := 0x40480000
 	FILESYSTEMS := squashfs
-	IMAGE/sysupgrade.bin := sysupgrade-tar
+	IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
 	KERNEL = kernel-bin
 	DEVICE_PACKAGES += \
 		wireless-regdb \
