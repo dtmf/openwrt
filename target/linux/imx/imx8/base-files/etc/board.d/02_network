@@ -4,10 +4,16 @@ board_config_update
 
 json_is_a network object && exit 0
 
-ucidef_set_interfaces_lan_wan "wlan0" "eth0"
+ucidef_set_interface_lan "wlan0"
 
 ucidef_set_interface "wwan0" device "/dev/cdc-wdm0" protocol "qmi"
-uci add_list firewall.@zone[1].network='wwan0'
+
+ucidef_set_interface "wan" \
+	device "eth0" \
+	protocol "static" \
+	ipaddr "192.168.23.150" \
+	netmask "255.255.255.0"
+
 
 board_config_flush
 

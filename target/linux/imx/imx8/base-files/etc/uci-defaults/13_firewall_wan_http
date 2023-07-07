@@ -1,0 +1,19 @@
+. /lib/functions.sh
+# Add HTTP access from WAN (since there is no LAN)
+
+RULE_NAME='Allow HTTP from WAN'
+
+uci show firewall | grep -q "$RULE_NAME" || {
+	uci -q batch <<-EOF >/dev/null
+		add firewall rule
+		set firewall.@rule[-1].name="$RULE_NAME"
+		set firewall.@rule[-1].src='wan'
+		set firewall.@rule[-1].proto='tcp'
+		set firewall.@rule[-1].dest_port='80'
+		set firewall.@rule[-1].target='ACCEPT'
+		set firewall.@rule[-1].family='ipv4'
+		commit firewall
+	EOF
+}
+
+exit 0

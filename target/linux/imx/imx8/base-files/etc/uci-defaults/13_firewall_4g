@@ -1,0 +1,13 @@
+. /lib/functions.sh
+# add 4G to firewall WAN zone
+
+NET='wwan0'
+
+uci get firewall.@zone[1].network | grep -q "$NET" || {
+	uci -q batch <<-EOF >/dev/null
+		add_list firewall.@zone[1].network="$NET"
+		commit firewall
+	EOF
+}
+
+exit 0
