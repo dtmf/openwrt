@@ -31,7 +31,12 @@ endef
 
 define Device/milesight_ug6x
 	DEVICE_VENDOR := Milesight
-	DEVICE_MODEL := UG65 UG67
+	DEVICE_MODEL := UG65/UG67 family
+	SUPPORTED_DEVICES := \
+		milesight,ug65 \
+		milesight,ug67 \
+		milesight,ug65-661 \
+		milesight,ug67-661
 	KERNEL_LOADADDR := 0x40480000
 	FILESYSTEMS := squashfs
 	IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata

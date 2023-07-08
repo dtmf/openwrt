@@ -4,7 +4,7 @@
 
 / {
 	model = "Milesight UG65";
-	compatible = "milesight,ug6x", "fsl,imx8mn";
+	compatible = "milesight,ug65", "fsl,imx8mn";
 
 	gpio-export {
 		wifi-reset {
