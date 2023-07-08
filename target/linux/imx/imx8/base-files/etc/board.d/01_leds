@@ -1,0 +1,10 @@
+. /lib/functions/leds.sh
+. /lib/functions/uci-defaults.sh
+
+board_config_update
+
+ucidef_set_led_netdev "4g" "4G" "green:lte" "wwan0"
+
+board_config_flush
+
+exit 0
